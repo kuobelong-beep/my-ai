@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>小助手 | 終極海量詞庫+四大選單+自訂表格</title>
+    <style>
+        :root { --p: #84a59d; --s: #f5cac3; --bg: #faf9f6; --t: #333; --accent: #7a8d91; }
+        body { font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; background: var(--bg); color: var(--t); margin: 0; display: flex; flex-direction: column; align-items: center; padding: 20px 0; }
+        
+        /* 工作台 */
+        .main { background: #fff; width: 1150px; height: 580px; display: flex; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); overflow: hidden; margin-bottom: 20px; border: 1px solid #e0e0e0; }
+        .left { flex: 1.2; padding: 25px 35px; border-right: 2px solid #f0f0f0; display: flex; flex-direction: column; gap: 12px; }
+        .row { display: flex; justify-content: space-between; align-items: center; }
+        label { font-size: 16px; font-weight: 700; color: #666; }
+        .add-btn { background: none; border: 2px solid var(--p); color: var(--p); border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font-size: 18px; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+        input, select { width: 100%; padding: 10px; border: 2px solid #eee; border-radius: 12px; font-size: 18px; color: var(--t); outline: none; box-sizing: border-box; background-color: #fdfdfd; }
+        .gen-btn { width: 100%; padding: 16px; background: var(--p); color: white; border: none; border-radius: 12px; font-size: 20px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 5px; }
+
+        .right { flex: 0.8; padding: 30px; background: #fafafa; display: flex; flex-direction: column; }
+        textarea { width: 100%; flex-grow: 1; padding: 25px; border: 2px solid #eee; border-radius: 15px; font-size: 20px; font-weight: 500; line-height: 1.8; color: #222; resize: none; box-sizing: border-box; }
+        .copy-btn { width: 100%; padding: 16px; background: var(--s); color: #444; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+
+        /* 詞庫區 */
+        .library { background: white; width: 1150px; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); box-sizing: border-box; }
+        .lib-header { border-bottom: 2px solid var(--bg); margin-bottom: 15px; display: flex; gap: 20px; overflow-x: auto; }
+        .lib-tab { padding: 12px; cursor: pointer; font-weight: bold; color: #bbb; font-size: 18px; white-space: nowrap; }
+        .lib-tab.active { color: var(--p); border-bottom: 4px solid var(--p); }
+        .scroll-box { height: 600px; overflow-y: auto; }
+        
+        /* 老師自訂區域樣式 */
+        .custom-input-group { background: #fff9f0; padding: 20px; border-radius: 15px; border: 2px dashed #dcb67a; margin-bottom: 20px; display: flex; gap: 10px; align-items: center; }
+        .custom-input-group input { flex: 1; border: 1px solid #dcb67a; }
+        .add-to-lib-btn { background: #dcb67a; color: white; border: none; padding: 10px 20px; border-radius: 10px; font-size: 18px; cursor: pointer; font-weight: bold; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 16px; }
+        th { text-align: left; color: #777; padding: 15px; border-bottom: 2px solid #eee; position: sticky; top: 0; background: white; z-index: 5; }
+        td { padding: 15px; border-bottom: 1px solid #f9f9f9; vertical-align: top; color: #444; line-height: 1.6; }
+        .hl { color: var(--p); font-weight: bold; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 100; justify-content: center; align-items: center; backdrop-filter: blur(2px); }
+        .m-box { background: white; padding: 35px; border-radius: 20px; width: 500px; }
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <div class="left">
+        <h2 style="color:var(--p); margin: 0 0 10px 0; font-size: 26px;">🌸 評語工作台</h2>
+        <div><label>學生姓名</label><input type="text" id="nn" placeholder="輸入姓名..."></div>
+        <div>
+            <div class="row"><label>1. 個性特質</label><button class="add-btn" onclick="openM('t')">+</button></div>
+            <select id="t">
+                <option value="">選擇特質...</option>
+                <option value="個性溫和有禮，常帶甜美笑容。">溫和有禮</option>
+                <option value="活潑開朗，是班上的開心果。">活潑開朗</option>
+                <option value="心思細膩沉穩，做事認真踏實。">細膩踏實</option>
+            </select>
+        </div>
+        <div>
+            <div class="row"><label>2. 學習表現</label><button class="add-btn" onclick="openM('p')">+</button></div>
+            <select id="p">
+                <option value="">選擇表現...</option>
+                <option value="上課專注聽講，作業工整美觀。">上課專心/作業工整</option>
+                <option value="擔任幹部負責盡職，是老師的好幫手。">負責盡職/好幫手</option>
+                <option value="喜愛閱讀探索，表達能力優異。">喜愛閱讀/表達佳</option>
+            </select>
+        </div>
+        <div>
+            <div class="row"><label>3. 生活常規</label><button class="add-btn" onclick="openM('r')">+</button></div>
+            <select id="r">
+                <option value="">選擇常規...</option>
+                <option value="收拾學具井然有序，自律力強。">收拾學具/自律</option>
+                <option value="熱心協助班級服務，做事負責。">熱心服務/負責</option>
+                <option value="與同儕相處融洽，懂得禮讓他人。">同儕融洽/禮讓</option>
+            </select>
+        </div>
+        <div>
+            <div class="row"><label>4. 老師期許</label><button class="add-btn" onclick="openM('a')">+</button></div>
+            <select id="a">
+                <option value="">選擇期許...</option>
+                <option value="若能更細心，表現會更亮眼喔！">更細心</option>
+                <option value="期待能更勇敢發表想法，加油！">勇敢發言</option>
+                <option value="看到你的進步很欣慰，繼續保持！">保持熱忱</option>
+            </select>
+        </div>
+        <button class="gen-btn" onclick="gen()">✨ 組合並產出評語</button>
+    </div>
+    <div class="right">
+        <label style="margin-bottom: 10px; font-size: 16px;">📝 最終生成</label>
+        <textarea id="out"></textarea>
+        <button class="copy-btn" id="cb" onclick="copy()">📋 點擊複製文字</button>
+    </div>
+</div>
+
+<div class="library">
+    <div class="lib-header">
+        <div class="lib-tab active" onclick="switchTab(0)">✨ 正向特質與學習</div>
+        <div class="lib-tab" onclick="switchTab(1)">💡 成長建議 (委婉語)</div>
+        <div class="lib-tab" onclick="switchTab(2)">🌈 生活常規與社交</div>
+        <div class="lib-tab" onclick="switchTab(3)" style="color: #b08d57;">📒 老師自訂靈感區</div>
+    </div>
+    <div class="scroll-box">
+        <table id="tab0" style="display:table;">
+            <tr><th>分類</th><th>關鍵字</th><th>推薦潤飾句</th></tr>
+            <tr><td>學習態度</td><td class="hl">舉一反三</td><td>思維敏捷且能融會貫通，常能在學習中展現卓越的理解力。</td></tr>
+            <tr><td>學習態度</td><td class="hl">精益求精</td><td>對自我要求高，作業書寫與學習任務總能追求完美的呈現。</td></tr>
+            <tr><td>學習態度</td><td class="hl">求知慾強</td><td>遇到疑問能主動請教，對新知保持高度探索熱情。</td></tr>
+            <tr><td>課堂參與</td><td class="hl">發言踴躍</td><td>樂於分享見解，是課堂討論中的靈魂人物，帶動班級學習氣氛。</td></tr>
+            <tr><td>課堂參與</td><td class="hl">專注傾聽</td><td>具備優良的聆聽習慣，能吸收老師講授精華，學習基礎紮實。</td></tr>
+            <tr><td>特殊才華</td><td class="hl">創意無限</td><td>在美勞創作與想像活動中表現出眾，獨特的視角令人驚艷。</td></tr>
+            <tr><td>特殊才華</td><td class="hl">節奏感佳</td><td>在音樂與肢體活動中展現極佳天賦，是舞台上閃亮的焦點。</td></tr>
+            <tr><td>閱讀習慣</td><td class="hl">沈浸書海</td><td>喜愛博覽群書，豐富的課外知識使其語文表達充滿文采。</td></tr>
+            <tr><td>做事風格</td><td class="hl">有條不紊</td><td>收拾學具與整理環境井然有序，展現出超越年齡的自律。</td></tr>
+        </table>
+
+        <table id="tab1" style="display:none;">
+            <tr><th>對象</th><th>狀況</th><th>推薦潤飾句 (建議與期許)</th></tr>
+            <tr><td>精細動作</td><td class="hl">手部控制</td><td>若能放慢運筆速度，專注於字體的間架結構，字跡定能大幅進步。</td></tr>
+            <tr><td>專注力</td><td class="hl">抗誘惑力</td><td>期許能練習將目光停留於黑板，不被周遭小事干擾，學習會更有效率。</td></tr>
+            <tr><td>自信心</td><td class="hl">突破畏難</td><td>遇到挑戰時若能多一分勇氣嘗試，你會發現自己的潛力遠超乎想像。</td></tr>
+            <tr><td>情緒調節</td><td class="hl">耐挫力</td><td>學習正視挫折與失敗，保持平常心面對困難，是成長最珍貴的養分。</td></tr>
+            <tr><td>生活節奏</td><td class="hl">時間管理</td><td>期待能加強生活節奏的掌控，讓收納與動作跟上腳步，學習更從容。</td></tr>
+            <tr><td>人際溝通</td><td class="hl">柔和語氣</td><td>若能學習以更溫暖的語言取代直白要求，人際關係定能更加圓融。</td></tr>
+            <tr><td>好動型</td><td class="hl">安定心神</td><td>期許能練習安定心神，靜心感受學習的樂趣，減少下位子的頻率。</td></tr>
+        </table>
+
+        <table id="tab2" style="display:none;">
+            <tr><th>分類</th><th>關鍵字</th><th>推薦潤飾句</th></tr>
+            <tr><td>人際互動</td><td class="hl">謙沖禮讓</td><td>與同儕相處時展現禮讓的美德，不爭搶、不計較，深受同學喜愛。</td></tr>
+            <tr><td>人際互動</td><td class="hl">貼心天使</td><td>擁有敏銳的觀察力，常能主動發現並安慰情緒低落的夥伴，極具溫情。</td></tr>
+            <tr><td>班級服務</td><td class="hl">熱心公事</td><td>對班級事務充滿熱忱，舉凡打掃或午餐服務均全力以赴，認真動人。</td></tr>
+            <tr><td>領導潛能</td><td class="hl">小小領袖</td><td>具備號召力與協調能力，在分組活動中能引導同伴達成目標。</td></tr>
+            <tr><td>誠實品格</td><td class="hl">勇於認錯</td><td>面對過失展現出誠實負責的態度，這份正直的品格是人生最寶貴的財富。</td></tr>
+        </table>
+        
+        <div id="tab3" style="display:none;">
+            <div class="custom-input-group">
+                <input type="text" id="customInput" placeholder="在此輸入您的私藏好句...">
+                <button class="add-to-lib-btn" onclick="addToCustomTable()">➕ 新增到自訂詞庫</button>
+            </div>
+            <table id="customTable">
+                <thead>
+                    <tr><th>分類</th><th class="hl">自訂內容</th><th>操作</th></tr>
+                </thead>
+                <tbody id="customTableBody">
+                    <tr><td>老師自訂</td><td>這是一條範例，請在上方輸入後點擊新增！</td><td>-</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="md" class="modal">
+    <div class="m-box">
+        <h3 id="mt" style="margin-top:0; color:var(--p); font-size: 22px;">新增評語積木</h3>
+        <input type="text" id="mi" placeholder="請貼上句子..." style="margin-bottom: 20px;">
+        <div style="display:flex; gap:15px;">
+            <button class="gen-btn" style="background:#ccc; flex:1;" onclick="closeM()">取消</button>
+            <button class="gen-btn" style="flex:1;" onclick="save()">確認加入</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let cur = '';
+    function openM(id) { cur = id; document.getElementById('md').style.display = 'flex'; }
+    function closeM() { document.getElementById('md').style.display = 'none'; document.getElementById('mi').value = ''; }
+    function save() {
+        const val = document.getElementById('mi').value;
+        if(val) {
+            const s = document.getElementById(cur);
+            s.add(new Option(val, val), 1);
+            s.value = val;
+        }
+        closeM();
+    }
+    function gen() {
+        const name = document.getElementById("nn").value || "孩子";
+        const t = document.getElementById("t").value;
+        const p = document.getElementById("p").value;
+        const r = document.getElementById("r").value;
+        const a = document.getElementById("a").value;
+        document.getElementById("out").value = `${name}${t}${p}${r}${a}`;
+    }
+    function copy() {
+        const o = document.getElementById("out");
+        if(!o.value) return;
+        o.select();
+        document.execCommand("copy");
+        document.getElementById("cb").innerText = "✅ 複製成功！";
+        setTimeout(() => { document.getElementById("cb").innerText = "📋 點擊複製文字"; }, 1500);
+    }
+    function switchTab(index) {
+        document.querySelectorAll('.lib-tab').forEach((t, i) => t.classList.toggle('active', i === index));
+        document.getElementById('tab0').style.display = index === 0 ? 'table' : 'none';
+        document.getElementById('tab1').style.display = index === 1 ? 'table' : 'none';
+        document.getElementById('tab2').style.display = index === 2 ? 'table' : 'none';
+        document.getElementById('tab3').style.display = index === 3 ? 'block' : 'none';
+    }
+    function addToCustomTable() {
+        const input = document.getElementById('customInput');
+        const text = input.value;
+        if(!text) return;
+        const tbody = document.getElementById('customTableBody');
+        const row = tbody.insertRow(0);
+        row.innerHTML = `<td>老師自訂</td><td class="hl">${text}</td><td><button onclick="this.parentElement.parentElement.remove()" style="background:none; border:none; color:red; cursor:pointer;">刪除</button></td>`;
+        input.value = '';
+    }
+</script>
+</body>
+</html>
