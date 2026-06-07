@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物理公式詳細版（含波動＋靜電學）</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; background: #fff; color: #222; font-size: 13px; padding: 20px; }
+  h1 { background: #1a237e; color: white; text-align: center; padding: 14px; font-size: 18px; border-radius: 8px; margin-bottom: 16px; }
+  .chapter { margin-bottom: 20px; border: 1.5px solid #ddd; border-radius: 8px; overflow: hidden; page-break-inside: avoid; }
+  .ch-title { color: white; padding: 9px 14px; font-size: 14px; font-weight: bold; }
+  .section { border-bottom: 1px solid #eee; }
+  .section:last-child { border-bottom: none; }
+  .sec-title { background: #f5f5f5; padding: 6px 12px; font-size: 12px; font-weight: bold; border-left: 4px solid #999; }
+  .formula { color: #c62828; font-weight: 500; padding: 5px 12px 2px 20px; font-size: 13px; line-height: 1.6; }
+  .explain { color: #333; padding: 2px 12px 5px 20px; font-size: 12px; line-height: 1.65; }
+  .warn { color: #e65100; font-weight: bold; padding: 3px 12px 5px 20px; font-size: 12px; }
+  .note { color: #666; padding: 2px 12px 4px 20px; font-size: 11px; line-height: 1.6; }
+  table.summary { width: calc(100% - 24px); margin: 6px 12px; border-collapse: collapse; font-size: 12px; }
+  table.summary th { background: #e8eaf6; padding: 5px 8px; border: 1px solid #ccc; text-align: center; }
+  table.summary td { padding: 5px 8px; border: 1px solid #ddd; }
+  @media print {
+    body { padding: 10px; font-size: 11px; }
+    .chapter { page-break-inside: avoid; margin-bottom: 12px; }
+    h1 { font-size: 14px; padding: 8px; }
+  }
+</style>
+</head>
+<body>
+<h1>物理公式詳細說明版｜分科考前筆記（含波動＋靜電學）</h1>
+
+<!-- Ch1 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#1565c0">Ch1｜測量與不確定度</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#1565c0;color:#1565c0">基本概念</div>
+    <div class="formula">測量結果 = 最佳估計值 X ± 不確定度 u(X)</div>
+    <div class="explain">【說明】不確定度愈小代表測量品質愈好。因為誤差無法精確估算，所以改用不確定度描述可靠程度。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#1565c0;color:#1565c0">A類 &amp; B類不確定度</div>
+    <div class="formula">A類（重複測量）：u_A = 標準差s ÷ √n</div>
+    <div class="explain">【說明】重複測量n次，n越大u_A越小。s為樣本標準差（分母用n-1）。</div>
+    <div class="formula">B類（儀器精度）：u_B = 最小刻度 ÷ (2√3) ≈ 最小刻度 × 0.289</div>
+    <div class="formula">A+B組合：u = √(u_A² + u_B²)</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#1565c0;color:#1565c0">物理量組合不確定度</div>
+    <div class="formula">加減（z = x ± y）：u(z) = √(u(x)² + u(y)²)</div>
+    <div class="formula">乘除（z = xy 或 x/y）：u_r(z) = √(u_r(x)² + u_r(y)²)</div>
+    <div class="explain">【說明】u_r(X) = u(X) ÷ |X|（相對不確定度）。</div>
+    <div class="warn">⚠ 最終不確定度只保留2位有效數字，用無條件進位法。</div>
+  </div>
+</div>
+
+<!-- Ch2 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#6a1b9a">Ch2｜直線運動</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#6a1b9a;color:#6a1b9a">等加速度四大公式</div>
+    <div class="formula">① v = v₀ + at　（沒有S）</div>
+    <div class="formula">② S = (v₀+v)t ÷ 2　（沒有a）</div>
+    <div class="formula">③ S = v₀t + ½at²　（沒有v）</div>
+    <div class="formula">④ v² = v₀² + 2aS　（沒有t）</div>
+    <div class="explain">【說明】看題目缺哪個就選對應公式。方向要統一定正負，加速度與速度同向→速率增加，反向→速率減少。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#6a1b9a;color:#6a1b9a">自由落體 &amp; 鉛直上拋</div>
+    <div class="formula">自由落體：v = gt，S = ½gt²，v² = 2gh</div>
+    <div class="formula">鉛直上拋（向上為正）：a = -g，最高點v=0，t_up = v₀/g，H = v₀²/(2g)</div>
+    <div class="explain">【說明】上拋最高點到落回原點，時間和速率關於最高點完全對稱。</div>
+  </div>
+</div>
+
+<!-- Ch3 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#00695c">Ch3｜平面運動</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#00695c;color:#00695c">水平拋體</div>
+    <div class="formula">飛行時間 t = √(2H/g)　水平射程 x = v₀t　落地速率 = √(v₀² + 2gH)</div>
+    <div class="explain">【說明】水平等速，鉛直自由落體，兩方向獨立分析再合成。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#00695c;color:#00695c">斜拋運動</div>
+    <div class="formula">vx = v₀cosθ（水平等速）；vy = v₀sinθ - gt（鉛直等加速）</div>
+    <div class="formula">上升時間 = v₀sinθ/g；最大高度 H = (v₀sinθ)²/(2g)</div>
+    <div class="formula">水平射程 R = v₀²sin2θ/g　【θ=45°時R最大，互補角射程相同】</div>
+  </div>
+</div>
+
+<!-- Ch4 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#e65100">Ch4｜靜力平衡</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#e65100;color:#e65100">虎克定律 &amp; 彈簧</div>
+    <div class="formula">F = kx；串聯：1/k_總 = 1/k₁+1/k₂+…；並聯：k_總 = k₁+k₂+…</div>
+    <div class="explain">【說明】串聯更軟（k變小），並聯更硬（k變大）。切成m:n兩段：k_m=(m+n)/m×k。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#e65100;color:#e65100">力矩 &amp; 靜力平衡 &amp; 拉密定理</div>
+    <div class="formula">力矩 τ = 力臂d × F = rFsinθ；靜力平衡：合力=0 且 合力矩=0</div>
+    <div class="formula">拉密定理（三力平衡）：A/sinα = B/sinβ = C/sinγ</div>
+    <div class="explain">【技巧】選未知力的作用點為支點，可消去該未知力。</div>
+  </div>
+</div>
+
+<!-- Ch5 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#37474f">Ch5｜牛頓力學</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#37474f;color:#37474f">三大定律 &amp; 摩擦力</div>
+    <div class="formula">N1：不受外力→靜止或等速直線；N2：F_合=ma；N3：作用力=反作用力（不同物體）</div>
+    <div class="formula">靜摩擦力 fs ≤ μsN；動摩擦力 fk = μkN（μk &lt; μs）</div>
+    <div class="warn">⚠ 正向力N不一定等於mg，需根據受力分析求N。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#37474f;color:#37474f">阿特午機</div>
+    <div class="formula">a = (m₁-m₂)g/(m₁+m₂)；繩張力 T = 2m₁m₂g/(m₁+m₂)</div>
+  </div>
+</div>
+
+<!-- Ch6 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#004d40">Ch6｜週期運動</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#004d40;color:#004d40">等速率圓周運動</div>
+    <div class="formula">ω = 2π/T = 2πf；v = ωR；ac = v²/R = ω²R；Fc = mv²/R = mω²R</div>
+    <div class="explain">【說明】向心力不是新的力，是合力在圓心方向的分量。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#004d40;color:#004d40">錐動擺 &amp; 轉彎</div>
+    <div class="formula">錐動擺：ω = √(g/Lcosθ)，T = 2π√(Lcosθ/g)</div>
+    <div class="formula">水平路面：v ≤ √(μsgR)；傾斜路面安全速率：v = √(gRtanθ)</div>
+  </div>
+</div>
+
+<!-- 簡諧 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#4a148c">簡諧運動</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4a148c;color:#4a148c">彈簧簡諧</div>
+    <div class="formula">F = -kx；ω = √(k/m)；T = 2π√(m/k)</div>
+    <div class="formula">能量守恆：½kA² = ½mv_max² = ½kx² + ½mv²</div>
+    <div class="explain">【說明】平衡點：速度最大、加速度=0；端點：速度=0、加速度最大。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4a148c;color:#4a148c">單擺（θ&lt;5°）</div>
+    <div class="formula">T = 2π√(L/g)　只與擺長L和重力g有關，與質量m、擺角無關</div>
+  </div>
+</div>
+
+<!-- Ch7 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#b71c1c">Ch7｜動量</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#b71c1c;color:#b71c1c">動量 &amp; 衝量 &amp; 守恆</div>
+    <div class="formula">p = mv；J = F_av × Δt；衝動定理：J = Δp = m(v-v₀)</div>
+    <div class="explain">【說明】F-t圖面積=衝量。緩衝原理：Δp固定時Δt越大F越小。</div>
+    <div class="formula">外力合力=0 → 總動量守恆；質心速度 vc = Σ(mᵢvᵢ)/M</div>
+  </div>
+</div>
+
+<!-- 角動量 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#1a237e">角動量與力矩</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#1a237e;color:#1a237e">角動量</div>
+    <div class="formula">L = rmvsinθ（單位：kg·m²/s）；dL/dt = τ；合力矩=0 → 角動量守恆</div>
+    <div class="formula">克卜勒第二：dA/dt = L/(2m) = 常數（近日點最快，遠日點最慢）</div>
+  </div>
+</div>
+
+<!-- Ch8 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#1b5e20">Ch8｜萬有引力</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#1b5e20;color:#1b5e20">萬有引力 &amp; 重力場</div>
+    <div class="formula">F = Gm₁m₂/r²，G = 6.674×10⁻¹¹</div>
+    <div class="formula">星體外：g = GM/r²（與r²反比）；星體內：g = GM/R³×r（與r正比）</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#1b5e20;color:#1b5e20">克卜勒三定律 &amp; 人造衛星</div>
+    <div class="formula">第三定律：R³/T² = 常數（只與中心天體質量有關）</div>
+    <div class="formula">v = √(GM/r)（r越大v越小）；T = 2π√(r³/GM)（r越大T越大）</div>
+    <div class="warn">⚠ 衛星軌道越高，速率越小但週期越長！</div>
+  </div>
+</div>
+
+<!-- Ch9 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#bf360c">Ch9｜功與能量</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#bf360c;color:#bf360c">作功 &amp; 動能 &amp; 功能定理</div>
+    <div class="formula">W = Fdcosθ；動能 K = ½mv²；功能定理：W_合 = ΔK</div>
+    <div class="explain">【說明】θ=90°功=0（向心力不做功）。動量與動能：K = p²/(2m)。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#bf360c;color:#bf360c">各種位能 &amp; 力學能守恆</div>
+    <div class="formula">重力位能（地表）：U = mgh；通用：U(r) = -GMm/r；彈性位能：Us = ½kx²</div>
+    <div class="formula">保守力：K + U = 常數；非保守力作功：W_非 = ΔK + ΔU = ΔE</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#bf360c;color:#bf360c">功率</div>
+    <div class="formula">P = W/Δt；瞬時功率 P = Fvcosθ</div>
+    <div class="explain">【說明】等速行駛：P = F_驅動 × v，最大速度 v_max = P/F_阻。</div>
+  </div>
+</div>
+
+<!-- 鉛直圓周 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#880e4f">鉛直面圓周運動</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#880e4f;color:#880e4f">最高點 &amp; 最低點臨界條件</div>
+    <div class="formula">最高點：N + mg = mv²/r，臨界速率 V_頂_min = √(gR)（此時N=0）</div>
+    <div class="formula">最低點對應：V_底_min = √(5gR)，此時 N_底 = 6mg</div>
+    <div class="explain">【推導】由能量守恆（高度差2r）：v_底² = v_頂² + 4gr，代入v_頂=√(gr)得v_底=√(5gr)。</div>
+  </div>
+</div>
+
+<!-- Ch10 碰撞 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#4e342e">Ch10｜碰撞</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4e342e;color:#4e342e">彈性碰撞（動量+動能守恆）</div>
+    <div class="formula">v₁' = [(m₁-m₂)v₁ + 2m₂v₂]/(m₁+m₂)；v₂' = [(m₂-m₁)v₂ + 2m₁v₁]/(m₁+m₂)</div>
+    <div class="explain">【特例】m₁=m₂：速度完全交換；m₁>>m₂：v₂'≈2v₁；m₁&lt;&lt;m₂：v₁'≈-v₁</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4e342e;color:#4e342e">完全非彈性碰撞</div>
+    <div class="formula">vc = (m₁v₁+m₂v₂)/(m₁+m₂)；ΔK = -½[m₁m₂/(m₁+m₂)](v₁-v₂)²</div>
+    <div class="explain">【說明】動量守恆，但力學能損失最多。</div>
+  </div>
+</div>
+
+<!-- Ch11 熱力學 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#006064">Ch11｜熱力學｜理想氣體</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#006064;color:#006064">四大定律 &amp; 理想氣體方程式</div>
+    <div class="formula">波以耳（定溫）：P₁V₁ = P₂V₂；查理（定壓）：V₁/T₁ = V₂/T₂</div>
+    <div class="formula">給呂薩克（定容）：P₁/T₁ = P₂/T₂；理想氣體通式：PV = nRT = NkT</div>
+    <div class="warn">⚠ T 必須用克氏（K）= 273 + 攝氏°C；R = 8.314 J/mol·K；k = 1.38×10⁻²³ J/K</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#006064;color:#006064">分子動力論</div>
+    <div class="formula">平均動能 = (3/2)kT = ½mv_rms²；方均根速率 v_rms = √(3RT/M)</div>
+    <div class="formula">N個分子總動能 = (3/2)NkT = (3/2)PV</div>
+    <div class="note">同溫：v_rms 與√M成反比；同種氣體：v_rms 與√T成正比</div>
+  </div>
+</div>
+
+<!-- ========== 波動 ========== -->
+<div class="chapter">
+  <div class="ch-title" style="background:#4527a0">Ch12｜波動</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">一、波的分類</div>
+    <div class="formula">力學波（需介質）：水波、聲波、繩波</div>
+    <div class="formula">電磁波（不需介質）：光波、無線電波</div>
+    <div class="explain">【橫波】介質振動方向與波的傳播方向垂直，有波峰和波谷（如水波、光波）。</div>
+    <div class="explain">【縱波】介質振動方向與波的傳播方向平行，有疏部和密部（如聲波）。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">二、簡諧週期波的物理量</div>
+    <table class="summary">
+      <tr><th>物理量</th><th>定義</th><th>補充</th></tr>
+      <tr><td>週期 T</td><td>一個全波通過某點所需時間</td><td>質點振動一次所需時間</td></tr>
+      <tr><td>頻率 f</td><td>每秒通過某點的全波數</td><td>f = 1/T，單位 Hz</td></tr>
+      <tr><td>波長 λ</td><td>兩相鄰同振動狀態質點的距離</td><td>橫波：相鄰波峰距離；縱波：相鄰密部距離</td></tr>
+      <tr><td>振幅 A</td><td>波峰（谷）離平衡位置的距離</td><td>質點作簡諧運動的振幅</td></tr>
+      <tr><td>波速 v</td><td>在同一介質中為定值</td><td>v = fλ = λ/T；與波源振動快慢、振幅無關</td></tr>
+    </table>
+    <div class="formula">波速 v = fλ = λ/T</div>
+    <div class="formula">繩波波速 v = √(F/μ)　（F=張力N，μ=線密度 kg/m）</div>
+    <div class="warn">⚠ 波速由介質決定，頻率由波源決定，波長由兩者共同決定（λ = v/f）。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">三、疊加原理與波的干涉</div>
+    <div class="formula">疊加原理：y'(x,t) = y₁(x,t) + y₂(x,t)（位移代數和）</div>
+    <div class="explain">【說明】兩波相遇時，合成波的位移等於各波位移的向量和。波各自通過後不改變彼此的行進方式（波的獨立性）。</div>
+    <div class="formula">完全建設性干涉：兩波同相（波峰對波峰），合成振幅 = 2倍</div>
+    <div class="formula">完全破壞性干涉：兩波完全反相（波峰對波谷），合成振幅 = 0（直線）</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">四、繩波的反射與透射</div>
+    <table class="summary">
+      <tr><th>端點類型</th><th>反射波</th><th>說明</th></tr>
+      <tr><td>固定端</td><td>上下顛倒、左右相反、振幅相同</td><td>按牛頓第三定律（反向）</td></tr>
+      <tr><td>自由端</td><td>上下不顛倒、左右相反、振幅相同</td><td>按牛頓第一定律（同向）</td></tr>
+    </table>
+    <table class="summary" style="margin-top:6px">
+      <tr><th>狀況</th><th>反射波</th><th>透射波</th></tr>
+      <tr><td>輕繩→重繩（μA &lt; μB）</td><td>上下顛倒、振幅變小、波長不變</td><td>上下不顛倒、振幅變小、波速變小、波長變短</td></tr>
+      <tr><td>重繩→輕繩（μA &gt; μB）</td><td>上下不顛倒、振幅變小、波長不變</td><td>上下不顛倒、振幅變大、波速變大、波長變長</td></tr>
+    </table>
+    <div class="explain">【記憶】反射波：波速和波長不變；透射波：頻率不變，波速和波長都改變。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">五、駐波</div>
+    <div class="formula">條件：振幅、週期、頻率、波速相同，但行進方向相反的兩列週期波疊加</div>
+    <div class="explain">【說明】駐波有固定不動的節點（N）和振幅最大的腹點（A）。節點靜止不動，腹點上下振動最大。</div>
+    <div class="formula">相鄰節點距離 = λ/2；相鄰腹點距離 = λ/2；節點到相鄰腹點距離 = λ/4</div>
+    <div class="formula">駐波波形不移動，能量無法傳出，只在動能與彈性位能之間互換。</div>
+    <div class="warn">⚠ 行進波：每個質點都會上下振動，能量向外傳遞。駐波：節點靜止，能量局限在一個區域。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">六、弦上的駐波與共振（兩端固定）</div>
+    <div class="formula">兩端皆為節點，L = n(λ/2)，n = 1,2,3…</div>
+    <div class="formula">駐波頻率 f = nv/(2L)，n = 1,2,3…</div>
+    <table class="summary">
+      <tr><th>名稱</th><th>公式</th><th>說明</th></tr>
+      <tr><td>基音（第一諧音）</td><td>f₁ = v/(2L)</td><td>弦長 = λ/2，只有1個波腹</td></tr>
+      <tr><td>第一泛音（第二諧音）</td><td>f₂ = 2v/(2L) = v/L</td><td>弦長 = λ，有2個波腹</td></tr>
+      <tr><td>第二泛音（第三諧音）</td><td>f₃ = 3v/(2L)</td><td>弦長 = 3λ/2，有3個波腹</td></tr>
+    </table>
+    <div class="explain">【說明】一端固定一端自由時：L = m(λ/4)，m=1,3,5…（只有奇數諧音），f = mv/(4L)。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">七、惠更斯原理</div>
+    <div class="explain">【說明】波前上的每一點都可視為新的點波源，各自發出圓形子波，這些子波的包絡面就是新的波前。可用來解釋反射、折射、繞射、干涉等現象。</div>
+    <div class="explain">【波前定義】相同振動狀態的相鄰質點連接起來的線或面。直線波的波前為平行直線，圓形波的波前為同心圓。波的傳播方向與波前垂直。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">八、水波的折射</div>
+    <div class="formula">折射定律：sinθ₁/sinθ₂ = v₁/v₂</div>
+    <div class="explain">【說明】水波進入不同深度的水區時，波速改變（深水快、淺水慢），頻率不變，波長改變，因此發生折射。</div>
+    <div class="explain">【記憶】深水區：波速大、波長長；淺水區：波速小、波長短。頻率永遠由波源決定，不因介質改變。</div>
+    <div class="formula">折射率 n_BA = n_B/n_A = sinθ_A/sinθ_B = v_A/v_B</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">九、反射定律</div>
+    <div class="formula">入射角 θᵢ = 反射角 θᵣ</div>
+    <div class="explain">【說明】入射線、法線、反射線在同一平面，且入射線與反射線分別在法線兩側。反射前後波長、頻率、波速不變，但振幅可能變小。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">十、繞射</div>
+    <div class="explain">【說明】波通過障礙物缺口或邊緣時，會繞過障礙物繼續傳播的現象。</div>
+    <div class="formula">缺口（障礙物）大小d與波長λ之比：d/λ 越小，繞射越明顯</div>
+    <div class="explain">【說明】光波波長很短，所以日常生活不易觀察到光的繞射，可視為直線前進。聲波、水波波長長，繞射明顯。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">十一、水波干涉（兩個相干波源S₁、S₂）</div>
+    <div class="formula">腹線（建設性干涉）：|PS₁ - PS₂| = nλ，n = 0,1,2,3…</div>
+    <div class="formula">節線（破壞性干涉）：|PS₁ - PS₂| = (m/2)λ，m = 1,3,5,7…</div>
+    <div class="explain">【說明】波程差為整數倍波長 → 建設性干涉（腹線，振幅最大）；波程差為半整數倍波長 → 破壞性干涉（節線，水面靜止）。</div>
+    <div class="formula">腹線總數 = 2[d/λ] + 1（必為奇數，因為有一條中央腹線）</div>
+    <div class="formula">節線總數 = 2[d/λ + ½]</div>
+    <div class="explain">【說明】中央腹線（波程差=0）：兩波源振動同相時為腹線；反相時為節線。</div>
+    <div class="warn">⚠ 腹線和節線都是雙曲線（以S₁、S₂為焦點）。</div>
+  </div>
+</div>
+
+<!-- Ch13 聲音 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#00838f">Ch13｜聲音</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#00838f;color:#00838f">一、聲波的基本性質</div>
+    <div class="formula">聲波是縱波（疏密波），需要介質，不能在真空中傳播</div>
+    <div class="explain">【說明】密部：空氣壓力大；疏部：空氣壓力小。頻率高於20000Hz為超音波，低於20Hz為聲下波。</div>
+    <div class="explain">【聲速大小】固體 &gt; 液體 &gt; 氣體。聲速由介質種類和狀態決定，與頻率無關。</div>
+    <div class="explain">【傳播特性】反射、折射、干涉、繞射、共振（共鳴）。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#00838f;color:#00838f">二、聲波的速度</div>
+    <div class="formula">空氣中聲速：v = 331 + 0.6T（m/s）　（T為攝氏溫度）</div>
+    <div class="explain">【說明】溫度越高、濕度越大、順風，聲速越快。</div>
+    <div class="formula">繩波波速 v = √(F/μ)；空氣中聲速 v = √(B/ρ)　（B=體積模數，ρ=密度）</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#00838f;color:#00838f">三、聲波的波形（密部中央 vs 疏部中央）</div>
+    <table class="summary">
+      <tr><th>位置</th><th>密部中央</th><th>疏密間中央（密部右邊）</th><th>疏部中央</th></tr>
+      <tr><td>位移</td><td>0</td><td>向左位移最大</td><td>0</td></tr>
+      <tr><td>振動速率</td><td>最大</td><td>最小</td><td>最大</td></tr>
+      <tr><td>密度/壓力</td><td>最大</td><td>與未壓縮時相等</td><td>最小</td></tr>
+    </table>
+    <div class="explain">【說明】密度波和壓力波的相位相同，位移波落後密度波 λ/4（即 90°）。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#00838f;color:#00838f">四、空氣柱的駐波（閉管與開管）</div>
+    <div class="formula">閉管（一端開口、一端閉口）：開口端為腹點（A），閉口端為節點（N）</div>
+    <div class="formula">閉管條件：L = mλ/4，m = 1,3,5…；頻率 f = mv/(4L)，m = 1,3,5…</div>
+    <div class="explain">【說明】閉管只有奇數諧音（1,3,5…），基音 f₁ = v/(4L)，第一泛音 = 3f₁，第二泛音 = 5f₁。</div>
+    <div class="formula">開管（兩端均開口）：兩端均為腹點（A）</div>
+    <div class="formula">開管條件：L = nλ/2，n = 1,2,3…；頻率 f = nv/(2L)，n = 1,2,3…</div>
+    <div class="explain">【說明】開管有全部諧音（1,2,3…），基音 f₁ = v/(2L)，第一泛音 = 2f₁，第二泛音 = 3f₁。</div>
+    <table class="summary">
+      <tr><th>類型</th><th>波長公式</th><th>頻率公式</th><th>基音</th><th>泛音</th></tr>
+      <tr><td>閉管</td><td>λ_n = 4L/m，m=1,3,5</td><td>f = mv/(4L)</td><td>f₁ = v/(4L)</td><td>只有奇數諧音</td></tr>
+      <tr><td>開管</td><td>λ_n = 2L/n，n=1,2,3</td><td>f = nv/(2L)</td><td>f₁ = v/(2L)</td><td>所有諧音</td></tr>
+    </table>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#00838f;color:#00838f">五、空氣柱共鳴實驗（課綱實驗）</div>
+    <div class="formula">連續兩次共鳴點相距 = λ/2（半個波長）</div>
+    <div class="formula">由 v = fλ 可測聲速：v = 331 + 0.6t</div>
+    <div class="explain">【說明】不論是否為理想共鳴管，連續兩次共鳴點仍相距λ/2，解題時一律以「連續兩次共鳴點相距λ/2」計算波長。</div>
+    <div class="warn">⚠ 第一個共鳴位置不一定恰在λ/4處（管口不一定是理想腹點）。音叉頻率應在400Hz以上，避免低音波長太長找不到第二次共鳴。</div>
+  </div>
+</div>
+
+<!-- Ch14 幾何光學 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#4527a0">Ch14｜幾何光學</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">一、反射定律與折射定律（司乃耳定律）</div>
+    <div class="formula">反射定律：入射角 = 反射角（θᵢ = θᵣ）</div>
+    <div class="explain">【說明】入射線、法線、反射線在同一平面，且在法線兩側。</div>
+    <div class="formula">司乃耳定律（折射）：n₁sinθ₁ = n₂sinθ₂</div>
+    <div class="formula">折射率 n = sinθ₁/sinθ₂ = v₁/v₂ = C/v　（C=真空光速，v=介質中光速）</div>
+    <div class="explain">【說明】n₂ &gt; n₁ → 折射線向法線彎（折射角變小）；n₂ &lt; n₁ → 折射線偏離法線（折射角變大）。</div>
+    <div class="explain">【相對折射率】n₁₂ = n₂/n₁ = sinθ₁/sinθ₂ = v₁/v₂（1進入2，由1看2，2相對1）。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">二、色散</div>
+    <div class="explain">【說明】白光通過稜鏡時，因不同波長的光折射率不同而分散成彩虹色，稱為色散。</div>
+    <div class="formula">藍光折射率 &gt; 紅光折射率（藍光偏折較多，紅光偏折較少）</div>
+    <div class="explain">【說明】折射率與波長有關：波長越短（藍/紫），折射率越大，彎曲越多。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">三、全反射</div>
+    <div class="formula">條件：光從折射率大（密）的介質射向折射率小（疏）的介質，且入射角 ≥ 臨界角θ_c</div>
+    <div class="formula">臨界角：sinθ_c = n₂/n₁ = n_疏/n_密　（此時折射角=90°）</div>
+    <div class="explain">【說明】全反射時沒有折射光，只有反射光。光纖就是利用全反射原理。</div>
+    <div class="warn">⚠ 全反射只能從密介質射向疏介質才會發生，反之絕對不會。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">四、視深與實深</div>
+    <div class="formula">視深與實深的關係：h' = h/n　（n為觀察者所在介質到物體所在介質的相對折射率）</div>
+    <div class="explain">【說明】從空氣看水中的物體：視深 &lt; 實深（看起來比較淺）；從水中看空氣中的物體：視深 &gt; 實深（看起來比較遠）。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">五、平面鏡成像</div>
+    <div class="formula">物距 = 像距（物與鏡的距離 = 像與鏡的距離）</div>
+    <div class="explain">【說明】平面鏡成虛像、正立、等大，與物左右相反。最小鏡長 = 1/2 身高。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">六、球面鏡成像公式</div>
+    <div class="formula">球面鏡公式：1/p + 1/q = 1/f = 2/R</div>
+    <div class="formula">橫向放大率：m = hᵢ/h₀ = -q/p</div>
+    <table class="summary">
+      <tr><th>符號</th><th>正值</th><th>負值</th></tr>
+      <tr><td>焦距 f</td><td>凹面鏡（會聚光線）</td><td>凸面鏡（發散光線）</td></tr>
+      <tr><td>物距 p</td><td>鏡前實物（高中只考這個）</td><td>鏡後虛物</td></tr>
+      <tr><td>像距 q</td><td>實像（鏡前）</td><td>虛像（鏡後）</td></tr>
+      <tr><td>放大率 m</td><td>正立的像（m &gt; 0）</td><td>倒立的像（m &lt; 0）</td></tr>
+    </table>
+    <div class="warn">⚠ 曲率半徑 R = 2f（球心到鏡頂的距離 = 2倍焦距）。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">七、凹面鏡成像位置一覽</div>
+    <table class="summary">
+      <tr><th>實物位置</th><th>像的位置</th><th>虛/實</th><th>正/倒立</th><th>大小</th></tr>
+      <tr><td>無窮遠</td><td>焦點上</td><td>實</td><td>倒</td><td>一點</td></tr>
+      <tr><td>球心外（p &gt; 2f）</td><td>球心與焦點間</td><td>實</td><td>倒</td><td>縮小</td></tr>
+      <tr><td>球心上（p = 2f）</td><td>球心上</td><td>實</td><td>倒</td><td>等大</td></tr>
+      <tr><td>球心與焦點間（2f &gt; p &gt; f）</td><td>球心外</td><td>實</td><td>倒</td><td>放大</td></tr>
+      <tr><td>焦點上（p = f）</td><td>不成像</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>焦點內（p &lt; f）</td><td>鏡後</td><td>虛</td><td>正</td><td>放大</td></tr>
+    </table>
+    <div class="explain">【凸面鏡】任何位置的實物，像都在鏡後，為虛像、正立、縮小。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">八、透鏡成像</div>
+    <div class="formula">薄透鏡公式：1/p + 1/q = 1/f　（與球面鏡公式相同）</div>
+    <div class="formula">放大率：m = hᵢ/h₀ = -q/p</div>
+    <table class="summary">
+      <tr><th>符號</th><th>正值</th><th>負值</th></tr>
+      <tr><td>焦距 f</td><td>凸透鏡（會聚）</td><td>凹透鏡（發散）</td></tr>
+      <tr><td>物距 p</td><td>鏡前實物</td><td>鏡後虛物</td></tr>
+      <tr><td>像距 q</td><td>實像（鏡後，光線出射側）</td><td>虛像（鏡前）</td></tr>
+    </table>
+    <div class="explain">【凸透鏡三條作圖光線】① 平行主軸→折射後過後焦點；② 通過前焦點→折射後平行主軸；③ 通過鏡心→直線不偏折。</div>
+    <div class="explain">【凹透鏡】任何位置的實物，像都在鏡前同側，為虛像、正立、縮小。</div>
+    <div class="warn">⚠ 球面鏡：實像在鏡前（q&gt;0），虛像在鏡後（q&lt;0）。透鏡：實像在鏡後（q&gt;0），虛像在鏡前（q&lt;0）。兩者相反！</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">九、凸透鏡成像位置完整一覽</div>
+    <table class="summary">
+      <tr><th>物的位置</th><th>像的位置</th><th>虛/實</th><th>正/倒立</th><th>大小</th></tr>
+      <tr><td>無窮遠（p→∞）</td><td>後焦點上</td><td>實</td><td>倒</td><td>一點</td></tr>
+      <tr><td>二倍焦距以外（p &gt; 2f）</td><td>f &lt; q &lt; 2f</td><td>實</td><td>倒</td><td>縮小</td></tr>
+      <tr><td>二倍焦距上（p = 2f）</td><td>q = 2f</td><td>實</td><td>倒</td><td>等大</td></tr>
+      <tr><td>焦距與二倍焦距間（f &lt; p &lt; 2f）</td><td>q &gt; 2f</td><td>實</td><td>倒</td><td>放大</td></tr>
+      <tr><td>焦點上（p = f）</td><td>不成像</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>焦點內（p &lt; f）</td><td>與物同側（q &lt; 0）</td><td>虛</td><td>正</td><td>放大</td></tr>
+    </table>
+    <div class="explain">【記憶】物在焦點外→實像倒立；物在焦點內→虛像正立放大（放大鏡原理）。物體朝透鏡移近時，實像遠離透鏡；虛像朝透鏡移近。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#4527a0;color:#4527a0">十、課綱實驗：折射率測定 &amp; 薄透鏡成像</div>
+    <div class="formula">實驗一：折射率測定（半圓形塑膠盒 + 插針法）</div>
+    <div class="explain">【原理】光由空氣射入液體，依司乃耳定律：n = sinθ₁/sinθ₂。以插針法定出光線路徑，量取入射角和折射角求n。</div>
+    <div class="formula">實驗二：薄透鏡成像（光屏法 + 插針法）</div>
+    <div class="explain">【凸透鏡實像】調整光屏位置直到出現最清晰的像，量取物距p和像距q，利用 1/p + 1/q = 1/f 求焦距f。</div>
+    <div class="warn">⚠ 以1/p為橫坐標、1/q為縱坐標，數據點分布成斜角135°的直線，橫軸或縱軸截距的倒數即為焦距f。</div>
+  </div>
+</div>
+
+<!-- Ch15 物理光學 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#1565c0">Ch15｜物理光學</div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#1565c0;color:#1565c0">一、光的波動性判斷——繞射與干涉</div>
+    <div class="explain">【說明】光通過狹縫時會發生繞射，再通過雙狹縫後形成干涉條紋。狹縫寬度越接近波長，繞射越明顯。</div>
+    <div class="explain">【同調光條件】兩個波源須具有相同頻率、固定相位差（同相或有固定相位差），才能產生穩定的干涉條紋。</div>
+    <div class="formula">完全建設性干涉：兩波同相 → 合成振幅最大（最亮）</div>
+    <div class="formula">完全破壞性干涉：兩波反相 → 合成振幅為零（最暗）</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#1565c0;color:#1565c0">二、楊氏雙狹縫干涉（Young's Double Slit）</div>
+    <div class="formula">波程差 ΔP = dsinθ　（d = 兩狹縫間距）</div>
+    <div class="formula">亮紋（建設性）：ΔP = dsinθ = nλ，n = 0,1,2,3…</div>
+    <div class="formula">暗紋（破壞性）：ΔP = dsinθ = (n-½)λ，n = 1,2,3…</div>
+    <div class="explain">【θ很小時】sinθ ≈ tanθ ≈ y/r　（y = 條紋到中央線的距離，r = 狹縫到光屏的距離）</div>
+    <div class="formula">亮紋位置：y_n = n(rλ/d)　→ 條紋間距 Δy = rλ/d</div>
+    <div class="warn">⚠ 亮紋間距 = 暗紋間距 = Δy = rλ/d。條紋間距與波長成正比、與狹縫間距成反比。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#1565c0;color:#1565c0">三、課綱實驗：雙狹縫干涉測量光波長</div>
+    <div class="formula">Δy = Lλ/d　→　λ = dΔy/L</div>
+    <div class="explain">【說明】L = 狹縫到光屏的距離，d = 雙狹縫間距，Δy = 相鄰兩暗紋（或亮紋）中線的間距。量出Δy即可求雷射光波長λ。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#1565c0;color:#1565c0">四、單狹縫繞射（Single Slit Diffraction）</div>
+    <div class="formula">暗紋條件（破壞性）：最大光程差 asinθ = nλ，n = 1,2,3…</div>
+    <div class="formula">亮紋條件（建設性）：最大光程差 asinθ = (n+½)λ，n = 1,2,3…</div>
+    <table class="summary">
+      <tr><th>條紋</th><th>雙狹縫干涉</th><th>單狹縫繞射</th></tr>
+      <tr><td>亮紋公式</td><td>y_n = n(Lλ/d)，n = 0,1,2…</td><td>中央：y=0；其他：y_n = (n+½)(Lλ/a)</td></tr>
+      <tr><td>暗紋公式</td><td>y_m = (m-½)(Lλ/d)，m = 1,2,3…</td><td>y_m = m(Lλ/a)，m = 1,2,3…</td></tr>
+      <tr><td>中央亮紋</td><td>寬度與其他相同</td><td>寬度是其他亮紋的2倍，強度最大</td></tr>
+    </table>
+    <div class="warn">⚠ 單狹縫繞射：中央亮紋最亮最寬（寬度是其他亮紋的2倍），兩側亮紋強度快速衰減。</div>
+  </div>
+  <div class="section">
+    <div class="sec-title" style="border-color:#1565c0;color:#1565c0">五、條紋間距的影響因素</div>
+    <table class="summary">
+      <tr><th>變動</th><th>雙狹縫 Δy = rλ/d</th><th>單狹縫 Δy = rλ/a</th></tr>
+      <tr><td>增大波長λ（紅光→藍光）</td><td>條紋間距變大→變小</td><td>條紋間距變大→變小</td></tr>
+      <tr><td>增大狹縫到光屏距離r</td><td>條紋間距變大</td><td>條紋間距變大</td></tr>
+      <tr><td>增大狹縫間距d（或狹縫寬a）</td><td>條紋間距變小</td><td>條紋間距變小（中央亮帶變窄）</td></tr>
+    </table>
+    <div class="explain">【記憶】波長越長、距離越遠 → 條紋越疏；狹縫越窄 → 繞射越強、中央亮帶越寬。</div>
+  </div>
+</div>
+
+<!-- Ch16 靜電學 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#ad1457">Ch16｜靜電學</div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">一、電的發現與電荷守恆</div>
+    <div class="formula">電荷量子化：Q = n × e　（n = 1,2,3,…，e = 1.6×10⁻¹⁹ 庫倫）</div>
+    <div class="explain">【說明】自然界所有物體的帶電量都是基本電荷 e 的整數倍。1C = 6.25×10¹⁸ e；1e = 1.6×10⁻¹⁹ C。</div>
+    <div class="explain">【起電方式】摩擦起電、感應起電、接觸起電。玻璃棒用絲絹摩擦後帶正電；塑膠棒用毛皮摩擦後帶負電。</div>
+    <div class="formula">電荷守恆：孤立系統的總電荷量保持不變，電荷只能轉移，不能被消滅或創造。</div>
+    <div class="warn">⚠ 電中性並非物體不具有電荷，而是等量的異性電荷聚集在一起。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">二、庫倫定律（僅適用於點電荷）</div>
+    <div class="formula">F = k × q₁q₂ / r²　　k = 9×10⁹ N·m²/C²</div>
+    <div class="explain">【說明】兩點電荷間的靜電力大小與兩電荷量乘積成正比，與距離平方成反比。同性電荷為排斥力，異性電荷為吸引力。作用力在兩點電荷的連線上。</div>
+    <div class="formula">疊加原理：合靜電力 F̄_合 = ΣF̄ᵢ（各電荷對某電荷的靜電力做向量和）</div>
+    <div class="explain">【原子內靜電力與重力比較】氫原子中靜電力 Fe 與重力 Fg 之比約為 2.2×10³⁹，靜電力遠大於重力。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">三、電場的定義與性質</div>
+    <div class="formula">電場強度：E = F/q = kQ/r²　（單位：牛頓/庫倫，N/C）</div>
+    <div class="explain">【說明】電場方向定義為正電荷在該點的受力方向。Q &gt; 0 → 電場自Q朝外發散；Q &lt; 0 → 電場自外朝Q收斂。E 的大小由場源決定，與測試電荷 q 無關。</div>
+    <div class="formula">已知電場 E，電荷 q 在該點受力：F = qE</div>
+    <div class="explain">【電力線性質】① 從正電荷發出，止於負電荷，非封閉曲線；② 電力線密度反映電場強弱；③ 電力線不相交；④ 電力線切線方向為正電荷受力方向；⑤ 電力線與等位面垂直。</div>
+    <table class="summary">
+      <tr><th>電力線形狀</th><th>說明</th></tr>
+      <tr><td>正點電荷（+）</td><td>向外放射</td></tr>
+      <tr><td>負點電荷（-）</td><td>向內收縮</td></tr>
+      <tr><td>一正一負點電荷</td><td>從正到負，弧形曲線</td></tr>
+      <tr><td>等量異性電平行板（A≫d）</td><td>板間均勻、平行、向右（正到負）</td></tr>
+      <tr><td>導體（靜電平衡）</td><td>內部 E = 0，表面 E 垂直表面</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">四、靜電平衡與屏蔽原理</div>
+    <div class="explain">【靜電平衡條件】① 導體內部電場為零；② 淨電荷分布在導體表面；③ 表面電場垂直於表面；④ 整個導體為等電位面。</div>
+    <div class="explain">【屏蔽原理】空腔導體：外部電場不會影響腔內物體（法拉第籠效應）；腔內帶電體的電場也不影響腔外。應用：電子儀器的金屬網罩、電纜外層金屬皮。</div>
+    <div class="warn">⚠ 靜電屏蔽僅對靜電場有效，若外部電場為交流電場，則屏蔽條件不再成立。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">五、高斯定律</div>
+    <div class="formula">高斯定律：Φ_E = ∯ E⃗·dA⃗ = Q_enc / ε₀　（ε₀ = 8.85×10⁻¹² C²/(N·m²)）</div>
+    <div class="explain">【說明】通過任意封閉曲面的電通量，等於曲面內包圍的電荷總量除以真空介電常數 ε₀。電力線的總數量只跟電荷量有關。</div>
+    <div class="formula">由高斯定律推導庫倫定律：ε₀E(4πr²) = q → E = kq/r²</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">六、帶電球體的電場分布</div>
+    <table class="summary">
+      <tr><th>位置</th><th>均勻帶電金屬球（實心/空心）</th><th>均勻帶電絕緣球（實心）</th></tr>
+      <tr><td>球內（r &lt; R）</td><td>E = 0</td><td>E = kQ/R³ × r　（與r成正比）</td></tr>
+      <tr><td>球表面（r = R）</td><td>E = kQ/R²</td><td>E = kQ/R²</td></tr>
+      <tr><td>球外（r &gt; R）</td><td>E = kQ/r²　（如同點電荷）</td><td>E = kQ/r²　（如同點電荷）</td></tr>
+    </table>
+    <div class="explain">【說明】導體球：電荷只在表面，內部 E = 0；絕緣球：電荷均勻分布在體積中，內部 E 與距球心距離 r 成正比（類比萬有引力星體內部重力場）。</div>
+    <div class="warn">⚠ 導體 = 等電位面，內部電場為 0。絕緣體球外電場與點電荷相同，球內電場從 0 線性增加到表面最大值。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">七、重力場與電場的類比</div>
+    <table class="summary">
+      <tr><th>物理量</th><th>重力（萬有引力）</th><th>靜電力（庫倫力）</th></tr>
+      <tr><td>力</td><td>F = GMm/r²</td><td>F = kQq/r²</td></tr>
+      <tr><td>場</td><td>g = GM/r²</td><td>E = kQ/r²</td></tr>
+      <tr><td>位能</td><td>Ug = -GMm/r（吸引）</td><td>Ue = kQq/r（正負視電荷而定）</td></tr>
+      <tr><td>位（電/重力）</td><td>V₀ = GM/r</td><td>Ve = kQ/r</td></tr>
+    </table>
+    <div class="explain">【說明】球對稱物體（含球體或球殼），在半徑以外的空間，其物理性質可視為集中在球心。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">八、平行電板的均勻電場</div>
+    <div class="formula">單一無限大帶電金屬板的電場：E = σ/(2ε₀) = 2πkσ</div>
+    <div class="formula">等量異性電荷的無限大平行電板（A≫d）：板間 E = σ/ε₀；板外 E = 0</div>
+    <div class="explain">【說明】σ 為面電荷密度（C/m²）。兩板間電場強度是單一金屬板的 2 倍；兩板外部電場相互抵消為零。</div>
+    <div class="explain">【性質】電場方向垂直於板面，場大小與距離遠近無關，只與電荷密度 σ 有關。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">九、電位能與電位</div>
+    <div class="formula">電位能變化：ΔU_e = U_f - U_i = -W_靜電力</div>
+    <div class="explain">【說明】靜電力為保守力，電位能的變化量等於靜電力所做的功的負值。通常選無窮遠處電位能為零。</div>
+    <div class="formula">點電荷的電位能：U(r) = kQq/r（Q、q 帶正負符號）</div>
+    <div class="explain">【說明】異號電荷（吸引）：U &lt; 0（引力位能）；同號電荷（排斥）：U &gt; 0（斥力位能）。多電荷系統總電位能 = 所有電荷對的電位能代數和。</div>
+    <div class="formula">電位（V）= U_e / q = kQ/r　（單位：伏特，V）</div>
+    <div class="explain">【說明】電位是純量。正電荷建立的電位曲線中心為正無限大，無限遠為 0；負電荷中心為負無限大，無限遠為 0。</div>
+    <div class="formula">電位差：V_AB = V_A - V_B = W_AB/q = (U_A - U_B)/q</div>
+    <div class="explain">【記憶】電場方向指向電位降低的方向（高電位→低電位）。電位差只與兩點位置有關，與路徑無關。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">十、平行電板的電位與電位差</div>
+    <div class="formula">均勻電場中（平行電板）：ΔV = V_f - V_i = -Ed</div>
+    <div class="explain">【說明】沿電場方向移動距離 d，電位降低 Ed；逆電場方向移動，電位升高。「順電場方向位能（電位）減少，逆電場方向位能（電位）增加」。</div>
+    <div class="formula">電位能的變化：ΔU_e = qΔV = q(V_f - V_i) = -qEd</div>
+    <div class="warn">⚠ 電場方向與等位面垂直；在等位面上移動，靜電力不做功，電位能不改變。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">十一、等電位線（面）</div>
+    <div class="explain">【定義】電位相等的點連成的線（平面問題）或面（立體問題）稱為等電位線（面）。</div>
+    <div class="explain">【性質】① 等電位線與電力線互相垂直；② 等電位面上移動電荷靜電力不做功；③ 等電位線不相交；④ 導體表面是等電位面；⑤ 等電位線較密處電場較強。</div>
+    <div class="explain">【點電荷等電位線】以電荷為中心的同心圓（球）。【平行電板】與板面平行的平面。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">十二、兩帶電金屬球連接後的靜電平衡</div>
+    <div class="formula">連接後電位相等：kQ₁'/R₁ = kQ₂'/R₂　→　Q₁':Q₂' = R₁:R₂</div>
+    <div class="formula">電荷守恆：Q₁' + Q₂' = Q₁ + Q₂</div>
+    <div class="formula">解聯立：Q₁' = R₁/(R₁+R₂) × (Q₁+Q₂)；Q₂' = R₂/(R₁+R₂) × (Q₁+Q₂)</div>
+    <div class="explain">【面電荷密度比】σ₁:σ₂ = R₂:R₁（與半徑成反比）</div>
+    <div class="explain">【表面電場比】E₁:E₂ = R₂:R₁ = σ₁:σ₂（表面電場與面電荷密度成正比）</div>
+    <div class="warn">⚠ 曲率半徑越小（越尖），電荷密度越大，電場越強——這是避雷針的基本原理。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">十三、帶電粒子在均勻電場中的運動（類拋體）</div>
+    <div class="formula">設長 L 的平行板電場 E，板外到螢光屏距離 D，粒子質量 m、電量 +q、水平初速 v₀</div>
+    <div class="explain">【板間分析】水平等速，垂直方向等加速（類自由落體）</div>
+    <div class="formula">垂直加速度：a_y = qE/m；垂直速度（出板）：v_y = (qE/m)(L/v₀)</div>
+    <div class="formula">板間垂直位移：y = qEL²/(2mv₀²)</div>
+    <div class="formula">板外垂直位移：y' = qELD/(mv₀²)</div>
+    <div class="formula">總垂直位移：Y = y + y' = qEL(L + 2D)/(2mv₀²)</div>
+    <div class="explain">【荷質比】由 Y 反推：q/m = 2v₀²Y / [EL(L+2D)]</div>
+    <div class="warn">⚠ 粒子在板外不受電場力，作等速直線運動。重力遠小於靜電力時可忽略重力。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#ad1457;color:#ad1457">十四、課綱實驗：等電位實驗</div>
+    <div class="formula">實驗目的：利用電場形成盤，繪出電場中的等電位線，再由等電位線推出電力線分布，以檢視電場。</div>
+    <div class="explain">【原理】等電位面（線）與電力線垂直；電荷在等電位面上移動，電場對此電荷不作功（電位能不改變）。</div>
+    <div class="explain">【裝置】電場形成盤（壓克力盤，盤中裝稀硫酸溶液或食鹽水）、兩圓柱金屬電極、直流電源、微安培計、兩探針 N₁ N₂。</div>
+    <div class="explain">【步驟】固定 N₁，移動 N₂ 找微安培計不偏轉之點（表示 N₁、N₂ 電位相同），記錄各點連線即得一條等電位線；重複後繪出多條等電位線，再畫垂直於等電位線的電力線。</div>
+    <div class="explain">【注意事項】① 電場形成盤內的稀硫酸溶液或食鹽水不可改為純水（純水不導電）；② 食鹽水濃度不可過高（濃度過高會產生有毒氯氣）；③ 不同電力線不能相交；④ 等位線密集處電場強，疏稀處電場弱；⑤ 相鄰等電位線的電位差均為 2V，間距不同是因為電場強弱不同。</div>
+  </div>
+</div>
+
+<!-- Ch17 電流與電路分析 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#1a237e">Ch17｜電流與電路分析</div>
+
+  <!-- S1 電流 -->
+  <div class="section">
+    <div class="sec-title" style="border-color:#1a237e;color:#1a237e">一、電流的定義</div>
+    <div class="formula">電流（平均）：I = ΔQ/Δt；瞬時電流：i = dQ/dt　（單位：安培 A）</div>
+    <div class="explain">【說明】1 安培 = 1 庫倫/秒 = 6.25×10¹⁸ 基本電荷/秒。電流方向定義為正電荷流動方向（與電子流方向相反）。</div>
+    <div class="explain">【導體中】自由電子為電荷載子，從低電位流向高電位（電子流方向），電流方向從高電位到低電位。</div>
+    <div class="explain">【電解液中】正、負離子均可移動：正離子向負極移動形成電流 I⁺，負離子向正極移動形成電流 I⁻，總電流 I = I⁺ + I⁻。</div>
+  </div>
+
+  <!-- S2 電阻與歐姆定律 -->
+  <div class="section">
+    <div class="sec-title" style="border-color:#1a237e;color:#1a237e">二、電阻與歐姆定律</div>
+    <div class="formula">電阻定義：R = V/I　（單位：歐姆 Ω = 伏特/安培）</div>
+    <div class="explain">【歐姆定律】在溫度不變的情形下，導線兩端的電壓 V 與通過的電流 I 之比值 V/I 為定值（= R）。符合歐姆定律的稱為歐姆式（線性）導體（如一般電阻、金屬）；不符合的稱為非歐姆式導體（如真空管、二極體）。</div>
+    <div class="formula">電阻定律：R = ρL/A　（ρ = 電阻率 Ω·m，L = 長度，A = 截面積）</div>
+    <div class="explain">【說明】電阻率 ρ 是材料本身的特性，與形狀無關。ρ 越大，電阻越大；導線越長、截面越小，電阻越大。銀的電阻率最小（1.59×10⁻⁸ Ω·m），其次為銅（1.69×10⁻⁸）。</div>
+    <table class="summary">
+      <tr><th>種類</th><th>導電能力</th><th>電阻率（Ω·m）</th><th>常見例子</th></tr>
+      <tr><td>導體</td><td>優（自由電子很多）</td><td>低（約10⁻⁸～10⁻³）</td><td>銅、鋁、銀</td></tr>
+      <tr><td>半導體</td><td>普通（與材質、溫度有關）</td><td>中（約10⁻³～10¹²）</td><td>矽、鍺</td></tr>
+      <tr><td>絕緣體</td><td>差（自由電子很少）</td><td>高（約10¹²～10²⁰）</td><td>橡膠、乾燥空氣、純水</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#1a237e;color:#1a237e">三、電阻率受溫度影響</div>
+    <div class="explain">【導體】溫度升高 → 原子振盪加劇 → 自由電子碰撞機會增加 → 電阻率增大（電阻增大）。金屬的電阻率與溫度近似成線性關係。</div>
+    <div class="explain">【半導體/絕緣體】溫度升高 → 部分束縛電子變成自由電子 → 電阻率反而下降。</div>
+    <div class="warn">⚠ 導體：溫度↑，電阻↑。半導體/絕緣體：溫度↑，電阻↓。兩者相反！</div>
+  </div>
+
+  <!-- S3 電路分析 -->
+  <div class="section">
+    <div class="sec-title" style="border-color:#1a237e;color:#1a237e">四、電動勢（EMF）與端電壓</div>
+    <div class="formula">電動勢：ε = dw/dq　（單位：伏特 V = 焦耳/庫倫）</div>
+    <div class="explain">【說明】電動勢裝置（如電池）將電荷從低電位推至高電位，提供固定電位差（電壓）。電池正極電位較高，負極電位較低。</div>
+    <div class="formula">放電時端電壓：V_端 = ε - Ir　（I = 電路電流，r = 內電阻）</div>
+    <div class="formula">充電時端電壓：V_端 = ε + Ir</div>
+    <div class="explain">【說明】內電阻 r 為電池本身的電阻。理想電池：r = 0，端電壓 = 電動勢。電路斷路（I = 0）時，非理想電池的端電壓也等於其電動勢。</div>
+    <div class="warn">⚠ 放電時端電壓 &lt; ε（電流越大，端電壓越低）；充電時端電壓 &gt; ε。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#1a237e;color:#1a237e">五、克希荷夫定律</div>
+    <div class="formula">電流定律（KCL）：∑iₖ = 0，即流入節點的電流 = 流出節點的電流</div>
+    <div class="explain">【說明】基於電荷守恆，任意節點的電流代數和為零（進入節點為正，離開節點為負）。</div>
+    <div class="formula">電壓定律（KVL）：∑vₖ = 0，即沿任意閉合迴路，所有電動勢的代數和等於所有電壓降的代數和</div>
+    <div class="explain">【說明】基於能量守恆，電荷從電池獲得的電能必全部消耗在迴路上：QV = QV₁ + QV₂ + QV₃ + …，即 V = V₁ + V₂ + V₃ + …</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#1a237e;color:#1a237e">六、電阻的串聯</div>
+    <div class="formula">串聯：電流相同 I = I₁ = I₂；電壓相加 V = V₁ + V₂</div>
+    <div class="formula">等效電阻：R = R₁ + R₂ + … + Rₙ（串聯後總電阻必大於原電路中任一電阻）</div>
+    <div class="formula">n 個相同電阻 R 串聯：等效電阻 R' = nR</div>
+    <div class="formula">串聯電路電壓分配：V₁:V₂ = R₁:R₂；V₁ = R₁/(R₁+R₂) × V；V₂ = R₂/(R₁+R₂) × V</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#1a237e;color:#1a237e">七、電阻的並聯</div>
+    <div class="formula">並聯：電壓相同 V = V₁ = V₂；電流相加 I = I₁ + I₂</div>
+    <div class="formula">等效電阻：1/R = 1/R₁ + 1/R₂ + … + 1/Rₙ（並聯後總電阻必小於原電路中任一電阻）</div>
+    <div class="formula">兩個電阻並聯：R = R₁R₂/(R₁+R₂)</div>
+    <div class="formula">n 個相同電阻 R 並聯：等效電阻 R' = R/n</div>
+    <div class="formula">並聯電路電流分配：I₁:I₂ = R₂:R₁（電阻大的分到電流小）；I₁ = R₂/(R₁+R₂) × I；I₂ = R₁/(R₁+R₂) × I</div>
+    <div class="warn">⚠ 並聯分流：電流反比於電阻。串聯分壓：電壓正比於電阻。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#1a237e;color:#1a237e">八、Y形與△形電路轉換</div>
+    <table class="summary">
+      <tr><th>△形轉Y形</th><th>Y形轉△形</th></tr>
+      <tr><td>R₁ = RₐRᵦ/(Rₐ+Rᵦ+Rᶜ)</td><td>Rₐ = (R₁R₂+R₂R₃+R₃R₁)/R₂</td></tr>
+      <tr><td>R₂ = RᵦRᶜ/(Rₐ+Rᵦ+Rᶜ)</td><td>Rᵦ = (R₁R₂+R₂R₃+R₃R₁)/R₃</td></tr>
+      <tr><td>R₃ = RₐRᶜ/(Rₐ+Rᵦ+Rᶜ)</td><td>Rᶜ = (R₁R₂+R₂R₃+R₃R₁)/R₁</td></tr>
+    </table>
+  </div>
+
+  <!-- S5 電功率 -->
+  <div class="section">
+    <div class="sec-title" style="border-color:#1a237e;color:#1a237e">九、電功率與焦耳定律</div>
+    <div class="formula">電池供電功率：P = εI</div>
+    <div class="formula">電阻耗電功率：P = IV = I²R = V²/R</div>
+    <div class="explain">【說明】P = IV = I²R = V²/R 三式等價，視題目已知量選擇使用。電功率單位：瓦（W），1W = 1 焦耳/秒。</div>
+    <div class="formula">常用電能單位：1 度電 = 1 千瓦·時（kWh）= 3.6×10⁶ 焦耳</div>
+    <div class="formula">焦耳定律：電阻生熱的功率 P = IV = I²R = V²/R；電阻生熱的總電功率 = 電源供電的總功率 = 各別電阻功率的和</div>
+    <div class="explain">【說明】電流的熱效應：電流通過有電阻的導體時，導體生熱。電子與原子碰撞，能量轉移給原子，增加振動以熱能形式表現。</div>
+    <div class="explain">【亮度】燈泡的亮度由電功率的大小決定。對相同的燈泡，亦可由燈泡兩端的電壓或通過燈泡的電流大小決定燈泡的亮度。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#1a237e;color:#1a237e">十、高壓輸電</div>
+    <div class="formula">發電廠輸出功率：P₀ = IV　→　I = P₀/V</div>
+    <div class="formula">輸送線消耗功率：P = I²R = (P₀/V)² × R = P₀²R/V²　∝ 1/V²</div>
+    <div class="explain">【說明】在發電廠輸出功率 P₀ 及導線電阻 R 固定的情形下，消耗的電功率 P 與輸出電壓 V 的平方成反比。因此升高輸電電壓，可大幅減少輸電線上的熱損失。</div>
+    <div class="warn">⚠ 「輸電線消耗功率」應用 P = Vw²/R（Vw 為輸電線兩端電壓降），而不是 V²/R（V 為發電廠輸出電壓）。兩者意義不同！</div>
+  </div>
+
+  <!-- 課綱實驗 -->
+  <div class="section">
+    <div class="sec-title" style="border-color:#1a237e;color:#1a237e">十一、課綱實驗：電阻的測量技術</div>
+    <div class="formula">基本原理：R = V/I（由電壓計讀電壓 V，電流計讀電流 I 求電阻）</div>
+    <div class="explain">【數位式三用電表（multimeter）】結合安培計、伏特計與歐姆計功能。COM 孔接負極黑色測試棒，VΩ 孔接電壓/電阻正極，mA 孔接低電流，10A 孔接高電流。使用前由最大檔位逐漸減小至適合檔位，避免燒毀電表。測量電阻時勿額外輸入電壓或電流。</div>
+    <div class="explain">【安培計 vs 伏特計的連接】安培計（低內阻）需與電阻串聯；伏特計（高內阻）需與電阻並聯。</div>
+    <table class="summary">
+      <tr><th>量測方法</th><th>電路接法</th><th>適用情況</th><th>測量誤差</th></tr>
+      <tr><td>低電阻法（安培計外接）</td><td>伏特計與電阻並聯，安培計串聯在外側</td><td>低電阻（R ≪ Rv）</td><td>R測 = R × Rv/(R+Rv) ≈ R（Rv很大時）</td></tr>
+      <tr><td>高電阻法（安培計內接）</td><td>安培計與電阻串聯，伏特計並聯在外側</td><td>高電阻（R ≫ RA）</td><td>R測 = R + RA ≈ R（RA很小時）</td></tr>
+    </table>
+    <div class="explain">【判斷標準】低電阻測量：安培計量到的電流包含流過伏特計的電流，伏特計量到的是電阻的電壓。高電阻測量：伏特計量到的電壓包含安培計的電壓降，安培計量到的是電阻的電流。</div>
+    <div class="explain">【I-V 關係曲線】以 V 為縱坐標、I 為橫坐標，數據點呈過原點的直線；斜率 V/I 即為電阻值（不同電阻對應不同斜率）。</div>
+    <div class="warn">⚠ 鎳鉻絲（高電阻）用高電阻法較準；銅線（低電阻）用低電阻法較準。實驗驗證：鎳鉻絲誤差約 0.92%，銅線誤差約 23.6%——高電阻法更適合量高電阻。</div>
+  </div>
+</div>
+
+<!-- Ch18 磁場與電流磁效應 -->
+<div class="chapter">
+  <div class="ch-title" style="background:#006064">Ch18｜磁場與電流磁效應</div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#006064;color:#006064">一、磁場與勞侖茲力</div>
+    <div class="formula">向量式：F⃗_B = qv⃗ × B⃗；純量式：F_B = qvBsinθ</div>
+    <div class="explain">【說明】θ 為速度 v⃗ 與磁場 B⃗ 的夾角。若 v⃗ 平行或反平行 B⃗（θ=0°或180°），則 F_B = 0；v⃗ ⊥ B⃗（θ=90°）時 F_B 最大。F⃗_B 永遠垂直於 v⃗ 和 B⃗，故磁力不做功、不改變速率，只改變方向。</div>
+    <div class="explain">【右手定則】四指先指向 v⃗ 方向，彎向 B⃗ 方向，大拇指即指向正電荷所受磁力方向；負電荷方向相反。</div>
+    <div class="formula">磁場單位：特斯拉（T）= N/(C·m/s) = kg/(A·s²)；1 T = 10000 高斯（G）</div>
+    <div class="explain">【參考值】地球表面磁場約 0.5 G；一般玩具小磁鐵約 100 G；大型電磁鐵可達 20000 G。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#006064;color:#006064">二、互垂場——速度選擇器與電子的發現</div>
+    <div class="explain">【湯姆遜實驗（電子的發現）】在陰極射線管中同時施加電場 E 和磁場 B，調整使電子束不偏轉，此時靜電力與磁力平衡：qE = qvB → v = E/B（速度選擇條件）。</div>
+    <div class="formula">速度選擇器（維恩濾波器）：v = E/B（只有速率恰為 E/B 的帶電粒子不偏轉，其餘偏轉）</div>
+    <div class="formula">由偏轉量 y 求荷質比：q/m = 2yE/(B²L²)　（y = 板間垂直位移，L = 板長）</div>
+    <div class="explain">【粒子動能】粒子經加速電壓 V 加速後的動能：Ek = ½mv² = eV（e 為基本電荷）</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#006064;color:#006064">三、帶電粒子在均勻磁場中的圓周運動（v⃗ ⊥ B⃗）</div>
+    <div class="formula">向心力 = 磁力：F_C = qvB = mv²/r　→　r = mv/(qB) = p/(qB)</div>
+    <div class="formula">動量：p = qBr</div>
+    <div class="formula">圓周半徑：r = mv/(qB) = p/(qB) = √(2mK)/(qB) = √(2mV/B²) × √(m/q)⁻¹</div>
+    <div class="formula">週期：T = 2πr/v = 2πm/(qB)　（與速率 v 無關！）</div>
+    <div class="formula">動能：K = p²/(2m) = q²B²r²/(2m)</div>
+    <div class="formula">角動量：L = rp = qBr²</div>
+    <div class="formula">荷質比：q/m = 2V/(B²r²)　（由加速電壓 V 與圓周半徑 r 求荷質比）</div>
+    <div class="warn">⚠ 週期 T = 2πm/(qB) 與速率無關、只與荷質比和磁場有關——迴旋加速器的原理基礎。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#006064;color:#006064">四、帶電粒子的螺旋運動（v⃗ 與 B⃗ 有夾角 φ）</div>
+    <div class="formula">垂直分速：v⊥ = v sinφ → 決定圓周運動半徑 r = mv⊥/(qB)</div>
+    <div class="formula">平行分速：v∥ = v cosφ → 沿磁場方向等速移動（磁力為零）</div>
+    <div class="formula">螺距：d = v∥ × T = v cosφ × 2πm/(qB)</div>
+    <div class="explain">【說明】合成運動為螺旋線。若 φ=90° → 正圓周運動；φ=0° → 直線運動（磁力為零）。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#006064;color:#006064">五、迴旋加速器</div>
+    <div class="explain">【原理】兩個半圓形 D 型盒置於均勻磁場中，D 型盒之間施加交變電場。帶電粒子在電場中加速，在磁場中作等速率圓周運動（T = 2πm/(qB) 固定），每經過間隙加速一次，能量增加，速率增加，半徑也隨之增大。</div>
+    <div class="formula">週期固定：T = 2πm/(qB)，每半個週期交換電場方向一次，讓粒子持續加速。</div>
+    <div class="formula">最大速度（迴旋半徑 = D 型盒半徑 R 時）：v_max = qBR/m</div>
+    <div class="explain">【限制】不考慮狹義相對論時，粒子質量視為固定，週期不變，可持續加速。實際上粒子質量隨速度增加，週期不再固定，需改用同步迴旋加速器。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#006064;color:#006064">六、導線在磁場中的安培力</div>
+    <div class="formula">向量式：F⃗_B = iL⃗ × B⃗；純量式：F_B = iLBsinθ；電流片段：dF⃗_B = idL⃗ × B⃗</div>
+    <div class="explain">【推導】q = it = i(L/v)，F_B = qvB = i(L/v)vB = iLB（電流垂直磁場時）。方向由右手定則決定（四指指向電流方向，彎向 B⃗，大拇指為受力方向）。</div>
+    <div class="warn">⚠ 封閉電流迴路在均勻磁場中，合力為零，但合力矩不一定為零。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#006064;color:#006064">七、線圈在磁場中受到的力矩</div>
+    <div class="formula">單匝矩形線圈（面積 A = ab）在均勻磁場中所受力矩：τ = iABsinθ</div>
+    <div class="formula">N 匝線圈：τ = NiABsinθ</div>
+    <div class="explain">【說明】θ 為線圈法向量（O'N 方向）與磁場 B⃗ 的夾角。θ=90° 時力矩最大（τ_max = NiAB）；θ=0° 時力矩為零（線圈平面垂直於磁場）。</div>
+    <div class="explain">【電刷的作用】使電流方向隨線圈旋轉而改變，維持力矩方向不變，實現連續旋轉（直流電動機原理）。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#006064;color:#006064">八、電流磁效應與安培定律</div>
+    <div class="explain">【歷史】厄斯特（1820）發現載流導線旁的磁針偏轉，建立電流與磁場的關聯。安培隨後提出右手定則（安培右手定則）及兩平行導線間的作用力關係。</div>
+    <div class="formula">安培定律：∮_C B⃗·dl⃗ = μ₀ i_enc</div>
+    <div class="explain">【說明】沿封閉迴路 C 的磁場線積分，等於真空導磁率 μ₀ 乘以迴路所圍住的電流。μ₀ = 4π×10⁻⁷ T·m/A ≈ 1.26×10⁻⁶ T·m/A。</div>
+    <div class="explain">【安培右手定則】大拇指指向電流方向，四指彎曲方向即為磁場方向（環繞導線的同心圓）。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#006064;color:#006064">九、各種電流結構的磁場</div>
+    <div class="formula">無限長直導線：B = μ₀I/(2πr)　（r 為距導線的垂直距離）</div>
+    <div class="explain">【推導】由安培定律：B·2πr = μ₀I → B = μ₀I/(2πr)。磁場為以導線為中心的同心圓，方向由安培右手定則決定。</div>
+    <div class="formula">圓形線圈中心處磁場：B(o) = μ₀Ia²/(2a³) = μ₀I/(2a)　（a = 線圈半徑）</div>
+    <div class="formula">圓形線圈軸線上距中心 x 處：B(p) = μ₀Ia²/(2(a²+x²)^(3/2))</div>
+    <div class="formula">理想螺線管：B = μ₀nI = μ₀(N/L)I　（n = 每單位長度匝數，N = 總匝數，L = 螺線管長度）</div>
+    <div class="explain">【螺線管性質】① 管內磁場平行於軸線且均勻；② 管外磁場因各匝線圈的磁場相互抵消而甚弱（理想情形下為零）。螺線管可視為由 N 個並排的圓形線圈所組成。</div>
+    <div class="explain">【電磁鐵】在螺線管中插入軟鐵棒，通電後磁場大幅增強；切斷電流後磁場消失。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title" style="border-color:#006064;color:#006064">十、畢歐沙伐定律</div>
+    <div class="formula">純量式：dB = μ₀I/(4πr²) × ds sinθ</div>
+    <div class="formula">向量式：dB⃗ = μ₀I/(4π) × (ds⃗ × r̂)/r² = μ₀I/(4π) × (ds⃗ × r̂)/r³</div>
+    <div class="formula">總磁場：B(r) = μ₀I/(4π) ∫ ds⃗×r̂/r²</div>
+    <div class="explain">【說明】畢歐沙伐定律描述任意形狀的電流元 ids 在空間一點 P 處所產生的磁場。θ 為電流方向與 r̂（由電流元指向場點的單位向量）的夾角。</div>
+    <div class="explain">【與安培定律的關係】畢歐沙伐定律是更基本的關係式；安培定律是其積分形式，適用於對稱性高的情形（如無限長直導線、螺線管）。</div>
+    <div class="formula">有限長直導線：B = μ₀I/(4πs) × (sinθ₂ - sinθ₁)　（s = 垂直距離，θ₁、θ₂ 為端點角度）</div>
+    <div class="formula">無限長直導線（θ₁=-π/2, θ₂=+π/2）：B = μ₀I/(2πs)　（與安培定律結果一致）</div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:16px;color:#aaa;font-size:11px;">
+  整理自 Gravity Physics 講義｜Ch1-Ch18｜附公式說明版
+</div>
+</body>
+</html>
